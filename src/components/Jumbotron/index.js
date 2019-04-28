@@ -5,7 +5,7 @@ function Jumbotron() {
   return (
     <div className="jumbotron">
       <h1>
-          Click the character icons to guess. Click all of them once to win.
+          Click the Character Icons to Guess. Click All of Them Once to Win.
       </h1>
     </div>
   );

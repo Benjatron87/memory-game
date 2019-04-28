@@ -7,6 +7,7 @@ function Navbar(props) {
       <a className="title">
         Benj's Memory Game
       </a>
+      <a className="message">{props.message}</a>
       <a className="score">
         Score: {props.score}
       </a>

@@ -21,27 +21,62 @@ class App extends Component {
 
   state = {
     characters,
-    score
+    score,
+    message: ""
   }
 
-  shuffleCards = () => {
+  shuffleCards = (id) => {
     const characters = this.state.characters;
 
     shuffle(characters);
 
-    this.setState({ characters });
-  } 
+    let score = this.state.score;
+    let message = "";
+
+    for(let i = 0; i < characters.length; i++){
+      if(id === characters[i].id){
+        if(characters[i].bool === "0"){
+          characters[i].bool = "1";
+
+          score = score + 1;
+        }
+        else{
+          characters.map(character => (
+            character.bool = "0"
+          ))
+          score = score * 0;
+          message = "You Lose! Click a Character to Start Again"
+        }
+      }
+    }
+    
+    if(score === 12){
+      message = "You Win! Click a Character to Start Again"
+
+      characters.map(character => (
+        character.bool = "0"
+      ))
+    }
+    else if (score > 12){
+      message = "";
+      score = 0;
+    }
+
+    this.setState({characters, score, message})
+  }
 
   render() {
     return (
       <div className="container">
         <Navbar 
-            score={score}
+            score={this.state.score}
+            message={this.state.message}
         />
         <Jumbotron />
         <Wrapper>
           {this.state.characters.map(character => (
             <Card
+              checkBool={this.checkBool}
               shuffleCards={this.shuffleCards}
               id={character.id}
               image={character.image}
