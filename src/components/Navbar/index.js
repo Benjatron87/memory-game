@@ -1,14 +1,14 @@
 import React from "react";
 import "./style.css";
 
-function Navbar() {
+function Navbar(props) {
   return (
-    <nav className="navbar fixed-top navbar-light bg-light d-flex justify-content-center">
-      <a className="navbar-brand" href="/">
+    <nav className="navbar fixed-top navbar-light bg-light">
+      <a className="title">
         Benj's Memory Game
       </a>
-      <a>
-        Score:
+      <a className="score">
+        Score: {props.score}
       </a>
     </nav>
   );
