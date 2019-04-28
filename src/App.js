@@ -9,12 +9,28 @@ import characters from "./characters.json"
 
 let score = 0
 
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
 class App extends Component {
 
   state = {
     characters,
     score
   }
+
+  shuffleCards = () => {
+    const characters = this.state.characters;
+
+    shuffle(characters);
+
+    this.setState({ characters });
+  } 
 
   render() {
     return (
@@ -26,9 +42,11 @@ class App extends Component {
         <Wrapper>
           {this.state.characters.map(character => (
             <Card
+              shuffleCards={this.shuffleCards}
               id={character.id}
               image={character.image}
               name={character.name}
+              bool={character.bool}
             />
           ))}
         </Wrapper>
