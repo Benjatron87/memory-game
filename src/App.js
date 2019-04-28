@@ -8,6 +8,7 @@ import Wrapper from "./components/Wrapper"
 import characters from "./characters.json"
 
 let score = 0
+let topscore = 0;
 
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -22,6 +23,7 @@ class App extends Component {
   state = {
     characters,
     score,
+    topscore,
     message: ""
   }
 
@@ -31,6 +33,7 @@ class App extends Component {
     shuffle(characters);
 
     let score = this.state.score;
+    let topscore = this.state.topscore;
     let message = "";
 
     for(let i = 0; i < characters.length; i++){
@@ -49,6 +52,10 @@ class App extends Component {
         }
       }
     }
+
+    if(score > topscore){
+      topscore = score;
+    }
     
     if(score === 12){
       message = "You Win! Click a Character to Start Again"
@@ -62,7 +69,7 @@ class App extends Component {
       score = 0;
     }
 
-    this.setState({characters, score, message})
+    this.setState({characters, score, topscore, message})
   }
 
   render() {
@@ -70,6 +77,7 @@ class App extends Component {
       <div className="container">
         <Navbar 
             score={this.state.score}
+            topscore={this.state.topscore}
             message={this.state.message}
         />
         <Jumbotron />

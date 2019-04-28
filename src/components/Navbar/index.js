@@ -9,7 +9,7 @@ function Navbar(props) {
       </a>
       <a className="message">{props.message}</a>
       <a className="score">
-        Score: {props.score}
+        Score: {props.score} | Top Score: {props.topscore}
       </a>
     </nav>
   );
